@@ -2,6 +2,8 @@
 
 A lightweight macOS menu bar application that displays the current USD to BRL (Brazilian Real) exchange rate in real time.
 
+![Menu Bar Screenshot](assets/menu-bar.jpeg)
+
 ## Features
 
 The application runs exclusively in the macOS menu bar, providing quick access to the current dollar exchange rate without interrupting your workflow.
