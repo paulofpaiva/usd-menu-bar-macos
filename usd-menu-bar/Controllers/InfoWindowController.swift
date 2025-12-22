@@ -50,7 +50,7 @@ final class InfoWindowController {
             statusLabel.stringValue = "⏳ Updating rate..."
             statusLabel.textColor = .secondaryLabelColor
         case .success(let value):
-            statusLabel.stringValue = String(format: "1 USD = R$ %.2f", value)
+            statusLabel.stringValue = "1 USD = R$ \(value)"
             statusLabel.textColor = .systemGreen
         case .error:
             statusLabel.stringValue = "⚠️ Error fetching data"

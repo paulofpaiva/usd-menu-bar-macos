@@ -82,7 +82,7 @@ final class StatusBarController {
             button.attributedTitle = NSAttributedString(string: "⏳ Updating rate...", attributes: attributes)
             
         case .success(let value):
-            let formattedValue = String(format: "USD $ %.2f", value)
+            let formattedValue = "USD $ \(value)"
             let attributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: NSColor.systemGreen,
                 .font: NSFont.monospacedDigitSystemFont(ofSize: 14, weight: .medium)
