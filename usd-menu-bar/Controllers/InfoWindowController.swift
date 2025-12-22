@@ -66,7 +66,7 @@ final class InfoWindowController {
     
     private func createWindow() {
         let newWindow = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 320, height: 240),
+            contentRect: NSRect(x: 0, y: 0, width: 320, height: 280),
             styleMask: [.titled, .closable, .miniaturizable],
             backing: .buffered,
             defer: false
@@ -83,7 +83,7 @@ final class InfoWindowController {
         let titleLabel = NSTextField(labelWithString: "💵 USD/BRL Exchange Rate")
         titleLabel.font = NSFont.systemFont(ofSize: 18, weight: .bold)
         titleLabel.alignment = .center
-        titleLabel.frame = NSRect(x: 20, y: 180, width: 280, height: 30)
+        titleLabel.frame = NSRect(x: 20, y: 220, width: 280, height: 30)
         contentView.addSubview(titleLabel)
         
         // Status label
@@ -91,7 +91,7 @@ final class InfoWindowController {
         statusLabelView.font = NSFont.monospacedDigitSystemFont(ofSize: 24, weight: .medium)
         statusLabelView.textColor = .labelColor
         statusLabelView.alignment = .center
-        statusLabelView.frame = NSRect(x: 20, y: 130, width: 280, height: 30)
+        statusLabelView.frame = NSRect(x: 20, y: 170, width: 280, height: 30)
         contentView.addSubview(statusLabelView)
         statusLabel = statusLabelView
         
@@ -100,7 +100,7 @@ final class InfoWindowController {
         infoLabel.font = NSFont.systemFont(ofSize: 12)
         infoLabel.textColor = .secondaryLabelColor
         infoLabel.alignment = .center
-        infoLabel.frame = NSRect(x: 20, y: 95, width: 280, height: 20)
+        infoLabel.frame = NSRect(x: 20, y: 135, width: 280, height: 20)
         contentView.addSubview(infoLabel)
         
         // Buttons layout
@@ -112,14 +112,14 @@ final class InfoWindowController {
         // Refetch button
         let refetchBtn = NSButton(title: "Refetch", target: self, action: #selector(handleRefetch))
         refetchBtn.bezelStyle = .rounded
-        refetchBtn.frame = NSRect(x: buttonStartX, y: 45, width: buttonWidth, height: 32)
+        refetchBtn.frame = NSRect(x: buttonStartX, y: 85, width: buttonWidth, height: 32)
         contentView.addSubview(refetchBtn)
         refetchButton = refetchBtn
         
         // Quit button
         let quitButton = NSButton(title: "Quit", target: self, action: #selector(handleQuit))
         quitButton.bezelStyle = .rounded
-        quitButton.frame = NSRect(x: buttonStartX + buttonWidth + buttonSpacing, y: 45, width: buttonWidth, height: 32)
+        quitButton.frame = NSRect(x: buttonStartX + buttonWidth + buttonSpacing, y: 85, width: buttonWidth, height: 32)
         contentView.addSubview(quitButton)
         
         // API info label
@@ -127,8 +127,25 @@ final class InfoWindowController {
         apiLabel.font = NSFont.systemFont(ofSize: 10)
         apiLabel.textColor = .tertiaryLabelColor
         apiLabel.alignment = .center
-        apiLabel.frame = NSRect(x: 20, y: 15, width: 280, height: 16)
+        apiLabel.frame = NSRect(x: 20, y: 55, width: 280, height: 16)
         contentView.addSubview(apiLabel)
+        
+        // Developer credit label
+        let developerLabel = NSTextField(labelWithString: "Developed by Paulo Paiva")
+        developerLabel.font = NSFont.systemFont(ofSize: 10)
+        developerLabel.textColor = .tertiaryLabelColor
+        developerLabel.alignment = .center
+        developerLabel.frame = NSRect(x: 20, y: 35, width: 280, height: 16)
+        contentView.addSubview(developerLabel)
+        
+        // GitHub link button
+        let githubButton = NSButton(title: "github.com/paulofpaiva", target: self, action: #selector(openGitHub))
+        githubButton.bezelStyle = .inline
+        githubButton.isBordered = false
+        githubButton.font = NSFont.systemFont(ofSize: 10)
+        githubButton.contentTintColor = .linkColor
+        githubButton.frame = NSRect(x: 20, y: 15, width: 280, height: 16)
+        contentView.addSubview(githubButton)
         
         newWindow.contentView = contentView
         window = newWindow
@@ -142,6 +159,12 @@ final class InfoWindowController {
     
     @objc private func handleQuit() {
         delegate?.infoWindowControllerDidRequestQuit(self)
+    }
+    
+    @objc private func openGitHub() {
+        if let url = URL(string: "https://github.com/paulofpaiva") {
+            NSWorkspace.shared.open(url)
+        }
     }
 }
 
